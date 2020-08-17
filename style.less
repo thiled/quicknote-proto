@@ -1,0 +1,33 @@
+.item {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  &:hover {
+    .checkbox {
+      visibility: visible;
+    }
+  }
+  &.finished {
+    .content {
+      text-decoration: line-through;
+      color: #ccc;
+    }
+    .checkbox {
+      visibility: visible;
+      color: #ccc;
+    }
+  }
+}
+.iconfont {
+  font-size: 18px;
+}
+.checkbox {
+  display: flex;
+  cursor: pointer;
+  margin-right: 5px;
+  visibility: hidden;
+}
+.content {
+  outline: none;
+  flex: 1;
+}

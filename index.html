@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuickNote Proto</title>
+    <link
+      rel="stylesheet"
+      href="https://at.alicdn.com/t/font_2009377_3fpfbwtc0of.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <Item
+        v-for="(item,index) in items"
+        :ref="item==focusItem?'focusItem':''"
+        :data="item"
+        :key="item.id"
+        @enter="insertItem"
+        @delete="deleteItem"
+        @up="moveUp"
+        @down="moveDown"
+      ></Item>
+    </div>
+
+    <template id="item">
+      <div class="item" :class="{finished:data.finished}" :style="indent">
+        <div @click="changeFinishStatus" class="checkbox">
+          <span
+            class="iconfont"
+            :class="data.finished? 'icon-checkbox-checked':'icon-checkbox'"
+          ></span>
+        </div>
+        <div
+          class="content"
+          @input="onInput"
+          contenteditable="true"
+          @keydown.tab.prevent="onTabPress"
+          @keydown.enter.prevent="onEnterPress"
+          @keydown.backSpace="onBackSpace"
+          @keydown.up="onKeyUp"
+          @keydown.down="onKeyDown"
+        >{{content}}</div>
+      </div>
+    </template>
+    <script src="item.js"></script>
+
+    <script src="index.js"></script>
+  </body>
+</html>
